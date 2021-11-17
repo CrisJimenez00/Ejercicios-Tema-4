@@ -15,7 +15,7 @@ public class MisVehiculos {
      */
     public static void main(String[] args) {
 
-        //Creo el vehículo
+        //Creo el vehículo 
         Vehiculo miCacharro = new Vehiculo("7894HGF", "SEAT", "Ibiza", "Negro", 102);
 
         //Muestro el vehículo con get en un sout
@@ -25,12 +25,12 @@ public class MisVehiculos {
                 + "\nModelo:" + miCacharro.getModelo()
                 + "\nColor:" + miCacharro.getColor()
                 + "\nTarifa:" + miCacharro.getTarifa());
-        
+
         //Cambio de matrícula con set
         miCacharro.setMatricula("0000ASD");
-        
+
         System.out.println("\n----------CAMBIO----------"
-                + "\nMatricula cambiada: " +miCacharro.getMatricula());
+                + "\nMatricula cambiada: " + miCacharro.getMatricula());
 
     }
 
