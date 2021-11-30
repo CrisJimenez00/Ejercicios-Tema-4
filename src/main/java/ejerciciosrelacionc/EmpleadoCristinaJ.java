@@ -4,40 +4,50 @@
  */
 package ejerciciosrelacionc;
 
-import java.util.Scanner;
 
 /**
  *
  * @author cristina
  */
-public class Empleado {
+public class EmpleadoCristinaJ {
 
     private String nombre, apellidos, NIF;
     private double sueldoBase, pagoHoraExtra, horasExtrasMensuales, tipoIRPF;
     private int numHijos;
     private boolean casado;//True = sí, False = no.
 
-    public Empleado() {
+    public EmpleadoCristinaJ() {
         this.nombre = "Cristina";
         this.apellidos = "Jiménez";
         this.NIF = "09117305J";
         this.sueldoBase = 1120;
-        this.pagoHoraExtra = 120;
+        if (pagoHoraExtra < 10 || pagoHoraExtra > 25) {
+            throw new IllegalArgumentException("Pago por hora extra está fuera de rango");
+        }
+        this.pagoHoraExtra = 12;
+
         this.horasExtrasMensuales = 8;
-        this.tipoIRPF = 12;
+        if (tipoIRPF < 1 || tipoIRPF > 21) {
+            this.tipoIRPF = 12;
+        }
         this.numHijos = 0;
         this.casado = false;
 
     }
 
-    public Empleado(String nombre, String apellidos, String NIF, double sueldoBase, double pagoHoraExtra, double horasExtrasMensuales, double tipoIRPF, int numHijos, boolean casado) {
+    public EmpleadoCristinaJ(String nombre, String apellidos, String NIF, double sueldoBase, double pagoHoraExtra, double horasExtrasMensuales, double tipoIRPF, int numHijos, boolean casado) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.NIF = NIF;
         this.sueldoBase = sueldoBase;
+        if (pagoHoraExtra < 10 || pagoHoraExtra > 25) {
+            throw new IllegalArgumentException("Pago por hora extra está fuera de rango");
+        }
         this.pagoHoraExtra = pagoHoraExtra;
         this.horasExtrasMensuales = horasExtrasMensuales;
-        this.tipoIRPF = tipoIRPF;
+        if (tipoIRPF < 1 || tipoIRPF > 21) {
+            this.tipoIRPF = tipoIRPF;
+        }
         this.numHijos = numHijos;
         this.casado = casado;
     }
@@ -95,7 +105,9 @@ public class Empleado {
     }
 
     public void setTipoIRPF(double tipoIRPF) {
-        this.tipoIRPF = tipoIRPF;
+        if (tipoIRPF <= 21 && tipoIRPF >= 1) {
+            this.tipoIRPF = tipoIRPF;
+        }
     }
 
     public int getNumHijos() {
@@ -116,60 +128,44 @@ public class Empleado {
 
     //Metodos del ejercicio 13
     //Para calcular h extras
-    public double calculoHorasExtras(Empleado e) {
-        double resultado = e.getPagoHoraExtra() * e.getHorasExtrasMensuales();
+    public double calculoHorasExtras() {
+        double resultado = this.pagoHoraExtra * this.horasExtrasMensuales;
         return resultado;
     }
 
     //Para calcular sueldo bruto
-    public double calculoSueldoBruto(Empleado e) {
-        double resultado = e.getSueldoBase() + e.calculoHorasExtras(e);
+    public double calculoSueldoBruto() {
+        double resultado = this.sueldoBase + this.calculoHorasExtras();
         return resultado;
     }
 
     //Calcula el IRPF
-    public void calculoIRPF(Empleado e) {
-        if (e.isCasado()) {
-            e.setTipoIRPF(e.getTipoIRPF() - 2);
+    public double calculoIRPF() {
+        if (this.isCasado()) {
+            this.tipoIRPF = -2;
         }
-        if (e.getNumHijos() != 0) {
-            for (int i = 0; i <= e.getNumHijos(); i++) {
-                e.setTipoIRPF(e.getTipoIRPF() - 1);
+        if (this.numHijos != 0) {
+            for (int i = 0; i <= this.numHijos; i++) {
+                this.tipoIRPF--;
             }
         }
-        e.setSueldoBase(e.sueldoBase * (e.getTipoIRPF() / 100));
+        return ((tipoIRPF * sueldoBase) / 100);
     }
 
-    public void escribirBasicInfo() {
-        Scanner teclado = new Scanner(System.in);
-        Empleado e = new Empleado();
-        System.out.println("Introduzca el nombre:");
-        e.setNombre(teclado.nextLine());
+    public double sueldoNeto() {
+        return (calculoSueldoBruto() - calculoIRPF());
+    }
 
-        System.out.println("Introduzca el apellido:");
-        e.setApellidos(teclado.nextLine());
-
-        System.out.println("Introduzca el NIF:");
-        e.setNIF(teclado.nextLine());
-
-        System.out.println("Introduzca su estado civil(s o c):");
-        if (teclado.nextLine().equalsIgnoreCase("C")) {
-            e.setCasado(true);
-        } else if (teclado.nextLine().equalsIgnoreCase("S")) {
-            e.setCasado(false);
-        } else {
-            System.out.println("Ha puesto un dato no válido con lo cual se quedará en false");
-        }
-
-        System.out.println("Introduzca el número de hijos:");
-        e.setNumHijos(teclado.nextInt());
+    public String escribirBasicInfo() {
+        return "Empleado{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", NIF=" + NIF + ", numHijos=" + numHijos + ", casado=" + casado + '}';
 
     }
 
     //Falta este
-    public void escribirAllInfo(){
-    
+    public String escribirAllInfo() {
+        return this.toString();
     }
+
     @Override
     public String toString() {
         return "Empleado{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", NIF=" + NIF + ", sueldoBase=" + sueldoBase + ", pagoHoraExtra=" + pagoHoraExtra + ", horasExtrasMensuales=" + horasExtrasMensuales + ", tipoIRPF=" + tipoIRPF + ", numHijos=" + numHijos + ", casado=" + casado + '}';
