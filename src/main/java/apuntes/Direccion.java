@@ -30,8 +30,13 @@ public class Direccion {
     }
 
     public Direccion(String calle, int numero) {
-        super();
         this.calle = calle;
         this.numero = numero;
     }
+
+    @Override
+    public String toString() {
+        return "Direccion{" + "calle=" + calle + ", numero=" + numero + '}';
+    }
+    
 }

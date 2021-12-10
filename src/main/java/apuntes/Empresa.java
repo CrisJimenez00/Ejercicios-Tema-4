@@ -17,8 +17,8 @@ public class Empresa {
         return dirección;
     }
 
-    public void setDirección(Direccion dirección) {
-        this.dirección = dirección;
+    public void setDirección(Direccion direccion) {
+        this.dirección = direccion;
     }
 
     public String getCif() {
