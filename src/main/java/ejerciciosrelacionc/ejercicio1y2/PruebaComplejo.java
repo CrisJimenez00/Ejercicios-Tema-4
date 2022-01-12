@@ -14,6 +14,8 @@ public class PruebaComplejo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        //Números que no son iguales
         Complejo num1 = new Complejo(3, 7);
         Complejo num2 = new Complejo(8, 9);
         System.out.println(num1.toString() + "\n" + num2.toString());
@@ -22,6 +24,15 @@ public class PruebaComplejo {
         System.out.println(Complejo.multiplicacion(num1, num2).toString());
         Complejo.igualdad(num1, num2);
 
+        System.out.println("\n------------OTRO CASO--------------");
+        //Números que son iguales
+        Complejo num3 = new Complejo(3, 7);
+        Complejo num4 = new Complejo(3, 7);
+        System.out.println(num3.toString() + "\n" + num4.toString());
+        System.out.println(Complejo.suma(num3, num4).toString());
+        System.out.println(Complejo.resta(num3, num4).toString());
+        System.out.println(Complejo.multiplicacion(num3, num4).toString());
+        Complejo.igualdad(num3, num4);
     }
 
 }

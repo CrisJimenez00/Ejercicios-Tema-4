@@ -13,11 +13,13 @@ public class NIF {
     //Atributos
     private String numero;
     private char letraDNI;
-    private int contador = 1;
+    private static int contador;
 
 
+    //Metodo para generar la letra
     private char generaLetra(String numero) {
         char letra;
+        //El switch con un caso para cada letra
         switch (Integer.parseInt(numero) % 23) {
             case 0:
                 letra = 'T';
@@ -95,12 +97,13 @@ public class NIF {
     //Constructores
     public NIF(String numero) {
         this.numero = numero;
-        if(numero.length() == 8){
-        this.letraDNI = generaLetra(numero);
-        }else{
-            System.out.println("El numero tiene que tener mínimo 8 dígitos");
+        if (numero.length() == 8) {
+            this.letraDNI = generaLetra(numero);
+            contador++;
+        } else {
+            System.out.println("El numero tiene que tener 8 dígitos");
         }
-        contador++;
+        
     }
 
     //getters, no setters
