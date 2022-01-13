@@ -12,6 +12,7 @@ public class Complejo {
 
     private double numeroImaginario;
     private double numeroReal;
+    private static int contador;
 
     //Métodos
     //Suma dos objetos de tipo Complejo
@@ -81,6 +82,7 @@ public class Complejo {
     public Complejo(double numeroImaginario, double numeroReal) {
         this.numeroImaginario = numeroImaginario;
         this.numeroReal = numeroReal;
+        contador++;
     }
 
     public Complejo() {
@@ -101,6 +103,10 @@ public class Complejo {
 
     public void setNumeroReal(double numeroReal) {
         this.numeroReal = numeroReal;
+    }
+
+    public static int getContador() {
+        return contador;
     }
 
     //toString

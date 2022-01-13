@@ -33,6 +33,11 @@ public class PruebaComplejo {
         System.out.println(Complejo.resta(num3, num4).toString());
         System.out.println(Complejo.multiplicacion(num3, num4).toString());
         Complejo.igualdad(num3, num4);
+        
+        System.out.println("--------------------------------");
+        //Solamente lo he puesto en el parametrizado para que no cuente los objetos
+        //creados en los métodos suma, resta, división e igualdad
+        System.out.println("Hay: " + Complejo.getContador() + " números complejos creados correctamente");
     }
 
 }
