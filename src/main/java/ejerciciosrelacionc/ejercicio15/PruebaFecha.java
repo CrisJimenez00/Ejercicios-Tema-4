@@ -15,10 +15,12 @@ public class PruebaFecha {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Fecha hoy = new Fecha(10,01,2022);
+        Fecha hoy = new Fecha(17,1,2022);
         System.out.println("El mes tiene: " + hoy.diaMes() + " días");
         hoy.diaSemana();
         hoy.mostrarFechaCorta();
+        hoy.setDia(30);
+        System.out.println(hoy.toString());
     }
     
 }

@@ -6,7 +6,6 @@
 package ejerciciosrelacionc.ejercicio15;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
@@ -28,8 +27,8 @@ public class Fecha {
         boolean fecha = true;
         try {
             LocalDate.of(anio, mes, dia);
-        } catch (IllegalArgumentException IAE) {
-            System.out.println("La fecha introducida no existe, introduzca una válida");
+        } catch (IllegalArgumentException iae) {
+
             fecha = false;
         }
         return fecha;
@@ -104,7 +103,7 @@ public class Fecha {
     public void igual(Fecha fecha) {
         fechaCompuesta = LocalDate.of(anio, mes, dia);
         LocalDate fechaParametrizado = LocalDate.of(fecha.getAnio(), fecha.getMes(), fecha.getDia());
-        boolean resultado = fechaParametrizado.isEqual(fechaCompuesta);
+        boolean resultado = fechaParametrizado.equals(fechaCompuesta);
 
         if (resultado == true) {
             System.out.println("Las fechas son iguales");
@@ -136,19 +135,20 @@ public class Fecha {
         this.dia = 1;
         this.mes = 1;
         this.anio = 2022;
-        fechaCompuesta = LocalDate.of(anio, mes, dia);
     }
 
     //Constructor parametrizado
     public Fecha(int dia, int mes, int anio) {
+
         if (comprobarFecha(dia, mes, anio)) {
+
             this.dia = dia;
             this.mes = mes;
             this.anio = anio;
+
         } else {
-            this.dia = 17;
-            this.mes = 1;
-            this.anio = 2022;
+
+            throw new IllegalArgumentException("No se ha creado la fecha correctamente.");
 
         }
         fechaCompuesta = LocalDate.of(anio, mes, dia);
@@ -160,7 +160,10 @@ public class Fecha {
     }
 
     public void setDia(int dia) {
-        this.dia = dia;
+        if (comprobarFecha(dia, mes, anio)) {
+            this.dia = dia;
+        }
+
     }
 
     public int getMes() {
@@ -168,7 +171,9 @@ public class Fecha {
     }
 
     public void setMes(int mes) {
-        this.mes = mes;
+        if (comprobarFecha(dia, mes, anio)) {
+            this.mes = mes;
+        }
     }
 
     public int getAnio() {
@@ -176,7 +181,15 @@ public class Fecha {
     }
 
     public void setAnio(int anio) {
-        this.anio = anio;
+        if (comprobarFecha(dia, mes, anio)) {
+            this.anio = anio;
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return "Fecha{" + "dia=" + dia + ", mes=" + mes + ", anio=" + anio + ", fechaCompuesta=" + fechaCompuesta + '}';
     }
 
 }
